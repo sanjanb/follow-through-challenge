@@ -20,6 +20,9 @@ import {
   Calendar,
   CheckCircle,
   Flame,
+  Trophy,
+  Lock,
+  Rocket,
 } from "lucide-react";
 
 const Progress = () => {

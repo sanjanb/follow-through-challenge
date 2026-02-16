@@ -1,6 +1,19 @@
 import { useState, useEffect } from "react";
 import { useChallenge } from "../context/ChallengeContext";
-import { CheckCircle, Circle, Calendar, TrendingUp, Award, Sun, Droplets, Activity, BookOpen, Sparkles, PenTool, Moon } from "lucide-react";
+import {
+  CheckCircle,
+  Circle,
+  Calendar,
+  TrendingUp,
+  Award,
+  Sun,
+  Droplets,
+  Activity,
+  BookOpen,
+  Sparkles,
+  PenTool,
+  Moon,
+} from "lucide-react";
 
 const Tracker = () => {
   const { state, updateDay, getStats } = useChallenge();
