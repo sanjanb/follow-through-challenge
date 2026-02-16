@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect } from "react";
+import { AlertTriangle } from "lucide-react";
 
 // Challenge Context
 const ChallengeContext = createContext();
@@ -109,7 +110,7 @@ export const ChallengeProvider = ({ children }) => {
   const resetChallenge = () => {
     if (
       window.confirm(
-        "⚠️ RESET WARNING:\nThis will erase ALL your progress.\nAre you absolutely sure?",
+        "WARNING:\nThis will erase ALL your progress.\nAre you absolutely sure?",
       )
     ) {
       dispatch({ type: "RESET_CHALLENGE" });

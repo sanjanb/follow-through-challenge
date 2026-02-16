@@ -7,6 +7,13 @@ import {
   CheckCircle,
   ArrowRight,
   Star,
+  Sun,
+  Droplets,
+  Activity,
+  BookOpen,
+  Sparkles,
+  PenTool,
+  Moon,
 } from "lucide-react";
 
 const Home = () => {
@@ -137,22 +144,24 @@ const Home = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {
-              icon: "🌅",
+              icon: Sun,
               name: "Morning Routine",
               desc: "Start your day intentionally",
             },
-            { icon: "💧", name: "Hydration", desc: "Stay properly hydrated" },
-            { icon: "🏃", name: "Movement", desc: "Physical activity daily" },
-            { icon: "📚", name: "Learning", desc: "Continuous improvement" },
-            { icon: "🧹", name: "Cleaning", desc: "Maintain your space" },
-            { icon: "📝", name: "Planning", desc: "Prepare for tomorrow" },
-            { icon: "😴", name: "Sleep", desc: "Quality rest matters" },
+            { icon: Droplets, name: "Hydration", desc: "Stay properly hydrated" },
+            { icon: Activity, name: "Movement", desc: "Physical activity daily" },
+            { icon: BookOpen, name: "Learning", desc: "Continuous improvement" },
+            { icon: Sparkles, name: "Cleaning", desc: "Maintain your space" },
+            { icon: PenTool, name: "Planning", desc: "Prepare for tomorrow" },
+            { icon: Moon, name: "Sleep", desc: "Quality rest matters" },
           ].map((item, index) => (
             <div
               key={index}
               className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg"
             >
-              <div className="text-2xl">{item.icon}</div>
+              <div className="w-8 h-8 text-primary-600">
+                <item.icon className="w-full h-full" />
+              </div>
               <div>
                 <h4 className="font-semibold text-gray-900">{item.name}</h4>
                 <p className="text-sm text-gray-600">{item.desc}</p>
