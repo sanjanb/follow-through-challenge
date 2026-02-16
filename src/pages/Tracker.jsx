@@ -13,6 +13,7 @@ import {
   Sparkles,
   PenTool,
   Moon,
+  Lightbulb,
 } from "lucide-react";
 
 const Tracker = () => {
@@ -235,9 +236,9 @@ const Tracker = () => {
           rows={4}
         />
 
-        <div className="mt-4 text-sm text-gray-500">
-          💡 Tip: Specific, measurable accomplishments build momentum and
-          self-trust.
+        <div className="mt-4 text-sm text-gray-500 flex items-center space-x-2">
+          <Lightbulb className="w-4 h-4 text-primary-500" />
+          <span>Tip: Specific, measurable accomplishments build momentum and self-trust.</span>
         </div>
       </div>
 
