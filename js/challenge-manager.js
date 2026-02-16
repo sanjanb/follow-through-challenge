@@ -234,7 +234,13 @@ class ChallengeManager {
   getBaselineStats() {
     const days = this.state.days;
     const baselineNames = [
-      'morning', 'hydration', 'movement', 'learning', 'cleaning', 'planning', 'sleep'
+      "morning",
+      "hydration",
+      "movement",
+      "learning",
+      "cleaning",
+      "planning",
+      "sleep",
     ];
 
     const stats = {};
@@ -243,7 +249,7 @@ class ChallengeManager {
       let completed = 0;
       let total = 0;
 
-      days.forEach(day => {
+      days.forEach((day) => {
         if (day.items && day.items[index] !== undefined) {
           total++;
           if (day.items[index]) completed++;
@@ -265,77 +271,77 @@ class ChallengeManager {
 
     const achievements = [
       {
-        id: 'first-day',
-        title: 'First Steps',
-        description: 'Completed your first day',
-        icon: '🎯',
-        unlocked: stats.completedDays >= 1
+        id: "first-day",
+        title: "First Steps",
+        description: "Completed your first day",
+        icon: "🎯",
+        unlocked: stats.completedDays >= 1,
       },
       {
-        id: 'week-one',
-        title: 'Foundation Builder',
-        description: 'Completed Week 1 challenges',
-        icon: '🏗️',
-        unlocked: weeks[1].completed
+        id: "week-one",
+        title: "Foundation Builder",
+        description: "Completed Week 1 challenges",
+        icon: "🏗️",
+        unlocked: weeks[1].completed,
       },
       {
-        id: 'three-day-streak',
-        title: 'Momentum Builder',
-        description: 'Maintained a 3-day streak',
-        icon: '🔥',
-        unlocked: stats.bestStreak >= 3
+        id: "three-day-streak",
+        title: "Momentum Builder",
+        description: "Maintained a 3-day streak",
+        icon: "🔥",
+        unlocked: stats.bestStreak >= 3,
       },
       {
-        id: 'week-two',
-        title: 'Discipline Master',
-        description: 'Completed Week 2 challenges',
-        icon: '⚡',
-        unlocked: weeks[2].completed
+        id: "week-two",
+        title: "Discipline Master",
+        description: "Completed Week 2 challenges",
+        icon: "⚡",
+        unlocked: weeks[2].completed,
       },
       {
-        id: 'seven-day-streak',
-        title: 'Consistency Champion',
-        description: 'Maintained a 7-day streak',
-        icon: '💪',
-        unlocked: stats.bestStreak >= 7
+        id: "seven-day-streak",
+        title: "Consistency Champion",
+        description: "Maintained a 7-day streak",
+        icon: "💪",
+        unlocked: stats.bestStreak >= 7,
       },
       {
-        id: 'week-three',
-        title: 'Momentum Keeper',
-        description: 'Completed Week 3 challenges',
-        icon: '🚀',
-        unlocked: weeks[3].completed
+        id: "week-three",
+        title: "Momentum Keeper",
+        description: "Completed Week 3 challenges",
+        icon: "🚀",
+        unlocked: weeks[3].completed,
       },
       {
-        id: 'halfway',
-        title: 'Halfway Hero',
-        description: 'Reached Day 14',
-        icon: '🎯',
-        unlocked: stats.completedDays >= 14
+        id: "halfway",
+        title: "Halfway Hero",
+        description: "Reached Day 14",
+        icon: "🎯",
+        unlocked: stats.completedDays >= 14,
       },
       {
-        id: 'week-four',
-        title: 'Integration Expert',
-        description: 'Completed Week 4 challenges',
-        icon: '👑',
-        unlocked: weeks[4].completed
+        id: "week-four",
+        title: "Integration Expert",
+        description: "Completed Week 4 challenges",
+        icon: "👑",
+        unlocked: weeks[4].completed,
       },
       {
-        id: 'perfect-week',
-        title: 'Perfect Week',
-        description: 'Completed all 7 days in a week',
-        icon: '⭐',
-        unlocked: Object.values(this.state.days.slice(0, 28)).some(day =>
-          day && day.items && day.items.filter(Boolean).length === 7
-        )
+        id: "perfect-week",
+        title: "Perfect Week",
+        description: "Completed all 7 days in a week",
+        icon: "⭐",
+        unlocked: Object.values(this.state.days.slice(0, 28)).some(
+          (day) => day && day.items && day.items.filter(Boolean).length === 7,
+        ),
       },
       {
-        id: 'full-challenge',
-        title: 'Challenge Complete',
-        description: 'Finished all 28 days',
-        icon: '🏆',
-        unlocked: stats.completedDays >= 28
-      }
+        id: "full-challenge",
+        title: "Challenge Complete",
+        description: "Finished all 28 days",
+        icon: "🏆",
+        unlocked: stats.completedDays >= 28,
+      },
     ];
 
     return achievements;
