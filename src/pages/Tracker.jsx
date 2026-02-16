@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useChallenge } from "../context/ChallengeContext";
-import { CheckCircle, Circle, Calendar, TrendingUp, Award } from "lucide-react";
+import { CheckCircle, Circle, Calendar, TrendingUp, Award, Sun, Droplets, Activity, BookOpen, Sparkles, PenTool, Moon } from "lucide-react";
 
 const Tracker = () => {
   const { state, updateDay, getStats } = useChallenge();
@@ -13,43 +13,43 @@ const Tracker = () => {
     {
       id: "morning",
       name: "Morning Routine",
-      icon: "🌅",
+      icon: Sun,
       desc: "Wake up, make bed, basic hygiene",
     },
     {
       id: "hydration",
       name: "Hydration",
-      icon: "💧",
+      icon: Droplets,
       desc: "Drink water throughout the day",
     },
     {
       id: "movement",
       name: "Movement",
-      icon: "🏃",
+      icon: Activity,
       desc: "Exercise or physical activity",
     },
     {
       id: "learning",
       name: "Learning",
-      icon: "📚",
+      icon: BookOpen,
       desc: "Read, study, or skill practice",
     },
     {
       id: "cleaning",
       name: "Cleaning",
-      icon: "🧹",
+      icon: Sparkles,
       desc: "Tidy your living space",
     },
     {
       id: "planning",
       name: "Planning",
-      icon: "📝",
+      icon: PenTool,
       desc: "Review day, plan tomorrow",
     },
     {
       id: "sleep",
       name: "Sleep",
-      icon: "😴",
+      icon: Moon,
       desc: "7-9 hours of quality sleep",
     },
   ];
@@ -187,7 +187,7 @@ const Tracker = () => {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center space-x-2">
-                    <span className="text-lg">{item.icon}</span>
+                    <item.icon className="w-5 h-5 text-primary-600" />
                     <h3
                       className={`font-semibold ${isCompleted ? "text-green-800" : "text-gray-900"}`}
                     >
