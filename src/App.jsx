@@ -1,12 +1,12 @@
-import { Routes, Route } from 'react-router-dom'
-import { ChallengeProvider } from './context/ChallengeContext'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import Home from './pages/Home'
-import Tracker from './pages/Tracker'
-import Weeks from './pages/Weeks'
-import Progress from './pages/Progress'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import { ChallengeProvider } from "./context/ChallengeContext";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Tracker from "./pages/Tracker";
+import Weeks from "./pages/Weeks";
+import Progress from "./pages/Progress";
+import "./App.css";
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
         <Footer />
       </div>
     </ChallengeProvider>
-  )
+  );
 }
 
-export default App
+export default App;
