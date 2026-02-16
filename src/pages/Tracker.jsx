@@ -169,7 +169,9 @@ const Tracker = () => {
           <div className="text-xl md:text-2xl font-bold text-blue-600">
             {stats.completionRate}%
           </div>
-          <div className="text-xs md:text-sm text-gray-600">Completion Rate</div>
+          <div className="text-xs md:text-sm text-gray-600">
+            Completion Rate
+          </div>
         </div>
       </div>
 
