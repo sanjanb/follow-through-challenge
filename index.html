@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✦ 28-Day Follow-Through Challenge ✦</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      --radius: 12px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background: linear-gradient(135deg, #f0f9ff 0%, #fefefe 100%);
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-bottom: 2rem;
+      border-bottom: 3px dashed var(--primary);
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin: 1rem 0;
+      background: linear-gradient(90deg, var(--primary), var(--success));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
+    }
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--gray);
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+    }
+    .warning {
+      background: #fffbeb;
+      border-left: 4px solid var(--warning);
+      padding: 1rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 1.5rem 0;
+      font-weight: 500;
+    }
+    .baseline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .baseline-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      border: 2px solid #e2e8f0;
+    }
+    .baseline-card.completed {
+      border-color: var(--success);
+      background: #f0fdf4;
+    }
+    .baseline-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 0.75rem;
+      color: var(--primary);
+    }
+    .streak-bar {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 0.75rem;
+      border-radius: var(--radius);
+      font-weight: bold;
+      margin: 1.5rem 0;
+      font-size: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+    .tracker-container {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    .day-row {
+      display: grid;
+      grid-template-columns: 40px repeat(7, 1fr) 80px 1fr;
+      gap: 8px;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      align-items: center;
+    }
+    .day-header {
+      font-weight: bold;
+      text-align: center;
+      background: #f1f5f9;
+      padding: 8px;
+      border-radius: 6px;
+    }
+    .checkbox-container {
+      display: flex;
+      justify-content: center;
+    }
+    .checkbox-custom {
+      appearance: none;
+      -webkit-appearance: none;
+      height: 24px;
+      width: 24px;
+      border: 2px solid var(--gray);
+      border-radius: 6px;
+      cursor: pointer;
+      position: relative;
+      background: white;
+    }
+    .checkbox-custom:checked {
+      background: var(--success);
+      border-color: var(--success);
+    }
+    .checkbox-custom:checked::after {
+      content: '✓';
+      position: absolute;
+      color: white;
+      font-size: 16px;
+      top: -2px;
+      left: 6px;
+    }
+    input[type="number"], input[type="text"], textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: inherit;
+    }
+    textarea {
+      min-height: 40px;
+      resize: vertical;
+    }
+    .mood-input {
+      width: 60px;
+      text-align: center;
+    }
+    .win-input {
+      font-size: 0.9rem;
+      padding: 6px;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary);
+      margin: 1.5rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary);
+    }
+    .week-section {
+      background: white;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--primary);
+    }
+    .week-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+    .task-item {
+      display: flex;
+      align-items: start;
+      gap: 10px;
+      margin: 0.75rem 0;
+      padding-left: 5px;
+    }
+    .reset-btn {
+      background: var(--danger);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1.1rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      margin: 1.5rem 0;
+      font-weight: bold;
+      width: 100%;
+      transition: all 0.2s;
+      box-shadow: var(--shadow);
+    }
+    .reset-btn:hover {
+      background: #dc2626;
+      transform: translateY(-1px);
+    }
+    .reflection-area {
+      margin-top: 1.5rem;
+    }
+    .reflection-area textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 12px;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--radius);
+      margin-top: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    .progress-container {
+      margin: 2rem 0;
+      text-align: center;
+    }
+    .progress-bar {
+      height: 24px;
+      background: #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--success);
+      border-radius: 12px;
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+    .unlock-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-weight: bold;
+      margin: 1rem 0;
+      display: none;
+    }
+    .locked-section {
+      opacity: 0.6;
+      pointer-events: none;
+      filter: grayscale(0.5);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin: 1.5rem 0;
+    }
+    .stat-card {
+      background: white;
+      padding: 15px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow);
+      border-top: 4px solid var(--primary);
+    }
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--primary);
+      margin: 5px 0;
+    }
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1.5rem;
+      color: var(--gray);
+      font-size: 0.9rem;
+      border-top: 1px solid #eee;
+    }
+    @media (max-width: 768px) {
+      .day-row {
+        grid-template-columns: 40px repeat(7, 0.5fr) 60px 1fr;
+        font-size: 0.85rem;
+      }
+      body { padding: 10px; }
+      h1 { font-size: 2rem; }
+      .baseline-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>✦ 28-DAY FOLLOW-THROUGH CHALLENGE ✦</h1>
+    <p class="subtitle"><em>Not another habit tracker. A proof system that rebuilds your self-trust.</em></p>
+    <div class="warning">
+      ⚠️ <strong>Before Day 1:</strong> Answer honestly → <em>"How many things did I fully finish last month?"</em><br>
+      If ≤2: Your problem isn't motivation—it's <strong>unclear finish lines</strong>. This fixes that.
+    </div>
+  </header>
+
+  <div class="progress-container">
+    <div>Days Completed: <span id="days-completed">0</span>/28</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    <div class="streak-bar" id="streak-bar">Current Streak: <span id="streak-count">0</span> days</div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value" id="total-wins">0</div>
+      <div class="stat-label">Total Wins Logged</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="avg-mood">-</div>
+      <div class="stat-label">Avg. Daily Mood</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="completion-rate">0%</div>
+      <div class="stat-label">Baseline Completion</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">🔑 YOUR DAILY BASELINE (Days 1–28)</h2>
+  <p><strong>Do these 7 non-negotiables EVERY day.</strong> No exceptions. No "I'll do extra tomorrow."<br>
+  <em>Miss 2 days in a row? Reset the 28-day count. This isn't punishment—it's respect for your word.</em></p>
+  
+  <div class="baseline-grid">
+    <div class="baseline-card">
+      <h3>1. Sleep 6+ hours</h3>
+      <p>Track bedtime/wake time</p>
+    </div>
+    <div class="baseline-card">
+      <h3>2. 60+ min phone-free</h3>
+      <p>Before 10am OR after 8pm</p>
+    </div>
+    <div class="baseline-card">
+      <h3>3. Write 1 win</h3>
+      <p>Tiny counts: "made bed," "said no"</p>
+    </div>
+    <div class="baseline-card">
+      <h3>4. Zero major lies</h3>
+      <p>To yourself or others</p>
+    </div>
+    <div class="baseline-card">
+      <h3>5. Move 10+ min</h3>
+      <p>Walk, stretch, dance—no gym required</p>
+    </div>
+    <div class="baseline-card">
+      <h3>6. 1 intentional decision</h3>
+      <p>Not reactive scrolling/eating</p>
+    </div>
+    <div class="baseline-card">
+      <h3>7. Check yesterday's commitment</h3>
+      <p>Did you finish it?</p>
+    </div>
+  </div>
+
+  <div class="tracker-container">
+    <div class="day-row">
+      <div class="day-header">Day</div>
+      <div class="day-header">1</div>
+      <div class="day-header">2</div>
+      <div class="day-header">3</div>
+      <div class="day-header">4</div>
+      <div class="day-header">5</div>
+      <div class="day-header">6</div>
+      <div class="day-header">7</div>
+      <div class="day-header">Mood</div>
+      <div class="day-header">Today's Win</div>
+    </div>
+    <div id="tracker-days"></div>
+  </div>
+
+  <div class="week-section" id="week1">
+    <h3 class="week-title">📅 WEEK 1: FOUNDATION</h3>
+    <p><strong>Goal:</strong> Prove you can show up when it's boring.</p>
+    <div class="task-item">
+      <input type="checkbox" id="w1-task1" class="checkbox-custom">
+      <label for="w1-task1">Complete all 7 Daily Baseline items ×7 days</label>
+    </div>
+    <div class="task-item">
+      <input type="checkbox" id="w1-task2" class="checkbox-custom">
+      <label for="w1-task2">Write: "What do I actually want to finish this week?" (1 sentence)</label>
+    </div>
+    <div class="task-item">
+      <input type="checkbox" id="w1-task3" class="checkbox-custom">
+      <label for="w1-task3">Identify #1 distraction → delete/block it for 7 days</label>
+    </div>
+    <div class="task-item">
+      <input type="checkbox" id="w1-task4" class="checkbox-custom">
+      <label for="w1-task4">Do 1 thing that scares you slightly (text someone, apply for X, cancel subscription)</label>
+    </div>
+    <div style="margin-top: 15px; padding-top: 10px; border-top: 1px dashed #cbd5e1;">
+      <label><strong>Biggest distraction removed:</strong><br>
+      <input type="text" id="w1-distraction" placeholder="e.g., Instagram, News app"></label>
+    </div>
+  </div>
+
+  <div class="week-section locked-section" id="week2">
+    <h3 class="week-title">📅 WEEK 2: DISCIPLINE</h3>
+    <p><strong>Goal:</strong> Push through the "this is boring" wall (Day 8–10).</p>
+    <div class="task-item">
+      <input type="checkbox" id="w2-task1" class="checkbox-custom">
+      <label for="w2-task1">Maintain all 7 Daily Baseline items</label>
+    </div>
+    <div class="task-item">
+      <input type="checkbox" id="w2-task2" class="checkbox-custom">
+      <label for="w2-task2">Upgrade: Phone-free time → 90 min/day</label>
+    </div>
+    <div class="task-item">
+      <input type="checkbox" id="w2-task3" class="checkbox-custom">
+      <label for="w2-task3">Finish one backlog item (under 90 min)</label>
+    </div>
+    <div class="task-item">
+      <input type="checkbox" id="w2-task4" class="checkbox-custom">
+      <label for="w2-task4">Have one difficult conversation (script it first if needed)</label>
+    </div>
+    <div class="task-item">
+      <input type="checkbox" id="w2-task5" class="checkbox-custom">
+      <label for="w2-task5">Learn 30 min in your field (no passive scrolling)</label>
+    </div>
+    <div style="margin-top: 15px; padding-top: 10px; border-top: 1px dashed #cbd5e1;">
+      <label><strong>Backlog item finished:</strong><br>
+      <input type="text" id="w2-backlog" placeholder="e.g., replied to overdue email"></label>
+    </div>
+  </div>
+  <button class="unlock-btn" id="unlock-week2">✓ Unlock Week 2 (After completing Week 1)</button>
+
+  <div class="week-section locked-section" id="week3">
+    <h3 class="week-title">📅 WEEK 3: MOMENTUM</h3>
+    <p><strong>Goal:</strong> See tangible evidence you're changing.</p>
+    <div class="task-item">
+      <input type="checkbox" id="w3-task1" class="checkbox-custom">
+      <label for="w3-task1">Maintain all 7 Daily Baseline items + 90-min phone-free</label>
+    </div>
+    <div class="task-item">
+      <input type="checkbox" id="w3-task2" class="checkbox-custom">
+      <label for="w3-task2">Finish what you started in Week 2 (no new projects)</label>
+    </div>
+    <div class="task-item">
+      <input type="checkbox" id="w3-task3" class="checkbox-custom">
+      <label for="w3-task3">Cut one energy vampire (person/app/habit)</label>
+    </div>
+    <div class="task-item">
+      <input type="checkbox" id="w3-task4" class="checkbox-custom">
+      <label for="w3-task4">Create/share something (output > consumption)</label>
+    </div>
+    <div class="task-item">
+      <input type="checkbox" id="w3-task5" class="checkbox-custom">
+      <label for="w3-task5">List 3 concrete wins from Days 1–21</label>
+    </div>
+    <div style="margin-top: 15px; padding-top: 10px; border-top: 1px dashed #cbd5e1;">
+      <label><strong>Energy vampire cut:</strong><br>
+      <input type="text" id="w3-vampire" placeholder="e.g., doomscrolling Twitter"></label>
+    </div>
+  </div>
+  <button class="unlock-btn" id="unlock-week3">✓ Unlock Week 3 (After completing Week 2)</button>
+
+  <div class="week-section locked-section" id="week4">
+    <h3 class="week-title">📅 WEEK 4: INTEGRATION</h3>
+    <p><strong>Goal:</strong> Lock in your new baseline—no backsliding.</p>
+    <div class="task-item">
+      <input type="checkbox" id="w4-task1" class="checkbox-custom">
+      <label for="w4-task1">Maintain all 7 Daily Baseline items</label>
+    </div>
+    <div class="task-item">
+      <input type="checkbox" id="w4-task2" class="checkbox-custom">
+      <label for="w4-task2">Review all 28 days in writing → "What actually changed?"</label>
+    </div>
+    <div class="task-item">
+      <input type="checkbox" id="w4-task3" class="checkbox-custom">
+      <label for="w4-task3">Identify your ONE sticky habit</label>
+    </div>
+    <div class="task-item">
+      <input type="checkbox" id="w4-task4" class="checkbox-custom">
+      <label for="w4-task4">Schedule your next 28-day challenge</label>
+    </div>
+    <div class="task-item">
+      <input type="checkbox" id="w4-task5" class="checkbox-custom">
+      <label for="w4-task5">Tell one person what you completed</label>
+    </div>
+    <div class="reflection-area">
+      <label for="reflection-changed"><strong>What changed most?</strong></label>
+      <textarea id="reflection-changed" placeholder="Be specific: 'I stopped checking email before noon'"></textarea>
+      
+      <label for="reflection-next" style="margin-top: 15px;"><strong>What's my next 28-day focus?</strong></label>
+      <textarea id="reflection-next" placeholder="Keep it tiny: 'Drink water before coffee'"></textarea>
+    </div>
+  </div>
+  <button class="unlock-btn" id="unlock-week4">✓ Unlock Week 4 (After completing Week 3)</button>
+
+  <button class="reset-btn" id="reset-btn">↻ RESET CHALLENGE (Clear all progress)</button>
+
+  <footer>
+    <p>"You don't need more discipline. You need fewer decisions."<br>
+    This system removes the daily "should I?" question. Your only job: show up for 7 tiny actions.<br>
+    The transformation happens in the repetition—not the inspiration.</p>
+    <p style="margin-top: 15px; font-weight: 500;">✅ <strong>Start today. Not Monday. Not "when things calm down." Today.</strong><br>
+    Your future self is built by the choices you protect today.</p>
+    <p style="margin-top: 20px; color: var(--gray); font-size: 0.85rem;">
+      GitHub Pages Ready • Zero Dependencies • All Data Saved Locally<br>
+      © <span id="year"></span> • Your self-trust rebuilding system
+    </p>
+  </footer>
+
+  <script>
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set current year in footer
+      document.getElementById('year').textContent = new Date().getFullYear();
+      
+      // Initialize state from localStorage or create new
+      const initialState = {
+        startDate: new Date().toISOString().split('T')[0],
+        days: Array(28).fill().map(() => ({
+          items: Array(7).fill(false),
+          mood: '',
+          win: ''
+        })),
+        weeks: {
+          1: { tasks: Array(4).fill(false), distraction: '' },
+          2: { tasks: Array(5).fill(false), backlog: '' },
+          3: { tasks: Array(5).fill(false), vampire: '' },
+          4: { tasks: Array(5).fill(false), reflection: { changed: '', next: '' } }
+        },
+        unlockedWeeks: [1],
+        lastCompletedDay: 0
+      };
+      
+      let state = JSON.parse(localStorage.getItem('followThroughChallenge')) || initialState;
+      
+      // Render tracker days
+      const trackerDays = document.getElementById('tracker-days');
+      trackerDays.innerHTML = '';
+      
+      state.days.forEach((day, index) => {
+        const dayNum = index + 1;
+        const dayRow = document.createElement('div');
+        dayRow.className = 'day-row';
+        dayRow.innerHTML = `
+          <div style="font-weight:bold;text-align:center">${dayNum}</div>
+          ${day.items.map((checked, i) => `
+            <div class="checkbox-container">
+              <input type="checkbox" class="checkbox-custom daily-item" 
+                data-day="${dayNum}" data-item="${i + 1}"
+                ${checked ? 'checked' : ''}>
+            </div>
+          `).join('')}
+          <input type="number" class="mood-input daily-mood" 
+            data-day="${dayNum}" 
+            min="1" max="10" 
+            value="${day.mood}" 
+            placeholder="1-10">
+          <input type="text" class="win-input daily-win" 
+            data-day="${dayNum}" 
+            value="${day.win}" 
+            placeholder="e.g., made bed">
+        `;
+        trackerDays.appendChild(dayRow);
+      });
+      
+      // Restore weekly section states
+      const restoreWeekSection = (weekNum) => {
+        const weekData = state.weeks[weekNum];
+        if (!weekData) return;
+        
+        // Restore task checkboxes
+        weekData.tasks.forEach((checked, i) => {
+          const checkbox = document.getElementById(`w${weekNum}-task${i + 1}`);
+          if (checkbox) checkbox.checked = checked;
+        });
+        
+        // Restore text inputs
+        if (weekNum === 1) {
+          document.getElementById('w1-distraction').value = weekData.distraction || '';
+        } else if (weekNum === 2) {
+          document.getElementById('w2-backlog').value = weekData.backlog || '';
+        } else if (weekNum === 3) {
+          document.getElementById('w3-vampire').value = weekData.vampire || '';
+        } else if (weekNum === 4) {
+          document.getElementById('reflection-changed').value = weekData.reflection.changed || '';
+          document.getElementById('reflection-next').value = weekData.reflection.next || '';
+        }
+      };
+      
+      // Restore all weeks
+      [1,2,3,4].forEach(week => restoreWeekSection(week));
+      
+      // Unlock sections based on state
+      [2,3,4].forEach(week => {
+        if (state.unlockedWeeks.includes(week)) {
+          document.getElementById(`week${week}`).classList.remove('locked-section');
+          document.getElementById(`unlock-week${week}`).style.display = 'none';
+        }
+      });
+      
+      // Update progress stats
+      updateStats();
+      
+      // Event listeners for daily items
+      document.querySelectorAll('.daily-item').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          const day = parseInt(this.dataset.day);
+          const item = parseInt(this.dataset.item);
+          state.days[day - 1].items[item - 1] = this.checked;
+          saveState();
+          updateStats();
+          
+          // Auto-unlock next week if conditions met
+          checkWeekUnlock();
+        });
+      });
+      
+      // Event listeners for mood/win inputs
+      document.querySelectorAll('.daily-mood, .daily-win').forEach(input => {
+        input.addEventListener('input', function() {
+          const day = parseInt(this.dataset.day);
+          if (this.classList.contains('daily-mood')) {
+            state.days[day - 1].mood = this.value;
+          } else {
+            state.days[day - 1].win = this.value;
+          }
+          saveState();
+          updateStats();
+        });
+      });
+      
+      // Weekly task checkboxes
+      document.querySelectorAll('[id^="w"][id*="-task"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          const week = parseInt(this.id.split('w')[1].split('-')[0]);
+          const taskIndex = parseInt(this.id.split('task')[1]) - 1;
+          state.weeks[week].tasks[taskIndex] = this.checked;
+          saveState();
+          checkWeekUnlock();
+        });
+      });
+      
+      // Weekly text inputs
+      document.getElementById('w1-distraction').addEventListener('input', e => {
+        state.weeks[1].distraction = e.target.value;
+        saveState();
+      });
+      document.getElementById('w2-backlog').addEventListener('input', e => {
+        state.weeks[2].backlog = e.target.value;
+        saveState();
+      });
+      document.getElementById('w3-vampire').addEventListener('input', e => {
+        state.weeks[3].vampire = e.target.value;
+        saveState();
+      });
+      document.getElementById('reflection-changed').addEventListener('input', e => {
+        state.weeks[4].reflection.changed = e.target.value;
+        saveState();
+      });
+      document.getElementById('reflection-next').addEventListener('input', e => {
+        state.weeks[4].reflection.next = e.target.value;
+        saveState();
+      });
+      
+      // Week unlock buttons
+      document.getElementById('unlock-week2').addEventListener('click', () => unlockWeek(2));
+      document.getElementById('unlock-week3').addEventListener('click', () => unlockWeek(3));
+      document.getElementById('unlock-week4').addEventListener('click', () => unlockWeek(4));
+      
+      // Reset button
+      document.getElementById('reset-btn').addEventListener('click', () => {
+        if (confirm('⚠️ RESET WARNING:\nThis will erase ALL your progress.\nAre you absolutely sure?')) {
+          localStorage.removeItem('followThroughChallenge');
+          location.reload();
+        }
+      });
+      
+      // Save state to localStorage
+      function saveState() {
+        // Update last completed day
+        let lastDay = 0;
+        for (let i = 0; i < 28; i++) {
+          if (state.days[i].items.every(item => item)) {
+            lastDay = i + 1;
+          } else {
+            break;
+          }
+        }
+        state.lastCompletedDay = lastDay;
+        localStorage.setItem('followThroughChallenge', JSON.stringify(state));
+      }
+      
+      // Update stats display
+      function updateStats() {
+        // Days completed (all 7 items checked)
+        const completedDays = state.days.filter(day => 
+          day.items.every(item => item)
+        ).length;
+        document.getElementById('days-completed').textContent = completedDays;
+        
+        // Update progress bar
+        const progressPercent = Math.min(100, Math.round((completedDays / 28) * 100));
+        document.getElementById('progress-fill').style.width = `${progressPercent}%`;
+        
+        // Current streak (consecutive completed days from start)
+        let streak = 0;
+        for (let i = 0; i < 28; i++) {
+          if (state.days[i].items.every(item => item)) {
+            streak++;
+          } else {
+            break;
+          }
+        }
+        document.getElementById('streak-count').textContent = streak;
+        document.getElementById('streak-bar').style.backgroundColor = 
+          streak >= 7 ? (streak >= 14 ? (streak >= 21 ? '#0ea5e9' : '#10b981') : '#f59e0b') : '#94a3b8';
+        
+        // Total wins logged
+        const totalWins = state.days.filter(day => day.win.trim() !== '').length;
+        document.getElementById('total-wins').textContent = totalWins;
+        
+        // Average mood
+        const moods = state.days
+          .map(day => parseInt(day.mood))
+          .filter(mood => !isNaN(mood) && mood >= 1 && mood <= 10);
+        const avgMood = moods.length > 0 
+          ? (moods.reduce((a, b) => a + b, 0) / moods.length).toFixed(1)
+          : '-';
+        document.getElementById('avg-mood').textContent = avgMood;
+        
+        // Completion rate
+        const totalItems = 28 * 7;
+        const completedItems = state.days.reduce((sum, day) => 
+          sum + day.items.filter(item => item).length, 0);
+        const completionRate = Math.round((completedItems / totalItems) * 100);
+        document.getElementById('completion-rate').textContent = `${completionRate}%`;
+      }
+      
+      // Check if weeks should unlock
+      function checkWeekUnlock() {
+        // Week 2 unlocks after Day 7 completed AND all Week 1 tasks done
+        if (!state.unlockedWeeks.includes(2)) {
+          const week1TasksDone = state.weeks[1].tasks.every(t => t);
+          const day7Done = state.days[6].items.every(item => item);
+          if (week1TasksDone && day7Done) {
+            unlockWeek(2);
+          }
+        }
+        
+        // Week 3 unlocks after Day 14 completed AND all Week 2 tasks done
+        if (!state.unlockedWeeks.includes(3)) {
+          const week2TasksDone = state.weeks[2].tasks.every(t => t);
+          const day14Done = state.days[13].items.every(item => item);
+          if (week2TasksDone && day14Done) {
+            unlockWeek(3);
+          }
+        }
+        
+        // Week 4 unlocks after Day 21 completed AND all Week 3 tasks done
+        if (!state.unlockedWeeks.includes(4)) {
+          const week3TasksDone = state.weeks[3].tasks.every(t => t);
+          const day21Done = state.days[20].items.every(item => item);
+          if (week3TasksDone && day21Done) {
+            unlockWeek(4);
+          }
+        }
+      }
+      
+      // Unlock a week section
+      function unlockWeek(weekNum) {
+        if (!state.unlockedWeeks.includes(weekNum)) {
+          state.unlockedWeeks.push(weekNum);
+          document.getElementById(`week${weekNum}`).classList.remove('locked-section');
+          document.getElementById(`unlock-week${weekNum}`).style.display = 'none';
+          saveState();
+          
+          // Show visual feedback
+          const weekSection = document.getElementById(`week${weekNum}`);
+          weekSection.style.animation = 'pulse 0.5s';
+          setTimeout(() => {
+            weekSection.style.animation = '';
+          }, 500);
+        }
+      }
+      
+      // Add CSS animation for unlock effect
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes pulse {
+          0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.3); }
+          70% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+        .week-section {
+          transition: all 0.3s ease;
+        }
+      `;
+      document.head.appendChild(style);
+    });
+  </script>
+</body>
+</html>
