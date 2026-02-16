@@ -172,10 +172,6 @@ const Tracker = () => {
           <div className="text-xs md:text-sm text-gray-600">Completion Rate</div>
         </div>
       </div>
-          </div>
-          <div className="text-sm text-gray-600">Completion Rate</div>
-        </div>
-      </div>
 
       {/* Today's Baseline */}
       <div className="bg-white rounded-2xl shadow-soft p-4 md:p-8">
