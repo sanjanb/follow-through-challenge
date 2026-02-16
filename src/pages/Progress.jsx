@@ -105,7 +105,9 @@ const Progress = () => {
           <div className="text-2xl md:text-3xl font-bold text-green-600">
             {stats.completionRate}%
           </div>
-          <div className="text-xs md:text-sm text-gray-600">Completion Rate</div>
+          <div className="text-xs md:text-sm text-gray-600">
+            Completion Rate
+          </div>
         </div>
       </div>
 

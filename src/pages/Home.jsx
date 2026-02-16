@@ -188,7 +188,9 @@ const Home = () => {
       {/* Call to Action */}
       <section className="text-center py-8 md:py-12 px-4">
         <div className="bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl p-6 md:p-12 text-white">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Ready to Prove Yourself?</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">
+            Ready to Prove Yourself?
+          </h2>
           <p className="text-lg md:text-xl mb-6 md:mb-8 opacity-90">
             28 days from now, you'll be someone who finishes what they start.
           </p>
