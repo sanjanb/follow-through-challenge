@@ -142,74 +142,82 @@ const Tracker = () => {
       </div>
 
       {/* Stats Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white rounded-xl shadow-soft p-6 text-center">
-          <Calendar className="w-8 h-8 text-primary-600 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-primary-600">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-6 md:mb-8">
+        <div className="bg-white rounded-xl shadow-soft p-4 md:p-6 text-center">
+          <Calendar className="w-6 h-6 md:w-8 md:h-8 text-primary-600 mx-auto mb-2" />
+          <div className="text-xl md:text-2xl font-bold text-primary-600">
             {stats.completedDays}
           </div>
-          <div className="text-sm text-gray-600">Days Completed</div>
+          <div className="text-xs md:text-sm text-gray-600">Days Completed</div>
         </div>
-        <div className="bg-white rounded-xl shadow-soft p-6 text-center">
-          <TrendingUp className="w-8 h-8 text-green-600 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-green-600">
+        <div className="bg-white rounded-xl shadow-soft p-4 md:p-6 text-center">
+          <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-green-600 mx-auto mb-2" />
+          <div className="text-xl md:text-2xl font-bold text-green-600">
             {stats.streak}
           </div>
-          <div className="text-sm text-gray-600">Current Streak</div>
+          <div className="text-xs md:text-sm text-gray-600">Current Streak</div>
         </div>
-        <div className="bg-white rounded-xl shadow-soft p-6 text-center">
-          <Award className="w-8 h-8 text-yellow-600 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-yellow-600">
+        <div className="bg-white rounded-xl shadow-soft p-4 md:p-6 text-center">
+          <Award className="w-6 h-6 md:w-8 md:h-8 text-yellow-600 mx-auto mb-2" />
+          <div className="text-xl md:text-2xl font-bold text-yellow-600">
             {stats.bestStreak}
           </div>
-          <div className="text-sm text-gray-600">Best Streak</div>
+          <div className="text-xs md:text-sm text-gray-600">Best Streak</div>
         </div>
-        <div className="bg-white rounded-xl shadow-soft p-6 text-center">
-          <CheckCircle className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-blue-600">
+        <div className="bg-white rounded-xl shadow-soft p-4 md:p-6 text-center">
+          <CheckCircle className="w-6 h-6 md:w-8 md:h-8 text-blue-600 mx-auto mb-2" />
+          <div className="text-xl md:text-2xl font-bold text-blue-600">
             {stats.completionRate}%
+          </div>
+          <div className="text-xs md:text-sm text-gray-600">Completion Rate</div>
+        </div>
+      </div>
           </div>
           <div className="text-sm text-gray-600">Completion Rate</div>
         </div>
       </div>
 
       {/* Today's Baseline */}
-      <div className="bg-white rounded-2xl shadow-soft p-6 md:p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">
+      <div className="bg-white rounded-2xl shadow-soft p-4 md:p-8">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6">
           Today's Baseline
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-3 md:gap-4">
           {baselineItems.map((item, index) => {
             const isCompleted = state.days[currentDay]?.items?.[index] || false;
             return (
               <div
                 key={item.id}
                 onClick={() => handleBaselineToggle(index)}
-                className={`flex items-center space-x-4 p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                className={`flex items-center space-x-3 md:space-x-4 p-3 md:p-4 rounded-lg border-2 cursor-pointer transition-all touch-manipulation ${
                   isCompleted
                     ? "border-green-200 bg-green-50"
-                    : "border-gray-200 bg-gray-50 hover:border-primary-300 hover:bg-primary-50"
+                    : "border-gray-200 bg-gray-50 hover:border-primary-300 hover:bg-primary-50 active:bg-primary-100"
                 }`}
               >
                 <div className="flex-shrink-0">
                   {isCompleted ? (
-                    <CheckCircle className="w-6 h-6 text-green-600" />
+                    <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-green-600" />
                   ) : (
-                    <Circle className="w-6 h-6 text-gray-400" />
+                    <Circle className="w-5 h-5 md:w-6 md:h-6 text-gray-400" />
                   )}
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <div className="flex items-center space-x-2">
-                    <item.icon className="w-5 h-5 text-primary-600" />
+                    <item.icon className="w-4 h-4 md:w-5 md:h-5 text-primary-600 flex-shrink-0" />
                     <h3
-                      className={`font-semibold ${isCompleted ? "text-green-800" : "text-gray-900"}`}
+                      className={`font-semibold truncate ${
+                        isCompleted ? "text-green-800" : "text-gray-900"
+                      }`}
                     >
                       {item.name}
                     </h3>
                   </div>
                   <p
-                    className={`text-sm ${isCompleted ? "text-green-600" : "text-gray-600"}`}
+                    className={`text-sm md:text-base ${
+                      isCompleted ? "text-green-600" : "text-gray-600"
+                    }`}
                   >
                     {item.desc}
                   </p>

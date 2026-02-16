@@ -54,28 +54,28 @@ const Home = () => {
   return (
     <div className="space-y-8">
       {/* Hero Section */}
-      <section className="text-center py-12">
-        <div className="bg-white rounded-2xl shadow-soft p-8 md:p-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+      <section className="text-center py-8 md:py-12">
+        <div className="bg-white rounded-2xl shadow-soft p-6 md:p-12">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
             28-Day <span className="text-primary-600">Follow-Through</span>{" "}
             Challenge
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 mb-6 md:mb-8 max-w-3xl mx-auto px-4">
             Transform your life by building unbreakable habits. This isn't about
             motivation—it's about proving to yourself that you finish what you
             start.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
             <Link
               to="/tracker"
-              className="inline-flex items-center px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-medium"
+              className="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-medium text-base md:text-lg"
             >
               Start Tracking Today
               <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
             <Link
               to="/progress"
-              className="inline-flex items-center px-8 py-4 border-2 border-primary-600 text-primary-600 font-semibold rounded-lg hover:bg-primary-50 transition-colors"
+              className="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 border-2 border-primary-600 text-primary-600 font-semibold rounded-lg hover:bg-primary-50 transition-colors text-base md:text-lg"
             >
               View Progress
             </Link>
@@ -131,17 +131,17 @@ const Home = () => {
       </section>
 
       {/* Daily Baseline */}
-      <section className="bg-white rounded-2xl shadow-soft p-8 md:p-12">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+      <section className="bg-white rounded-2xl shadow-soft p-4 md:p-8">
+        <div className="text-center mb-6 md:mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 md:mb-4">
             Your Daily Baseline
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 text-sm md:text-base px-4">
             7 non-negotiable habits that form your foundation
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {[
             {
               icon: Sun,
@@ -169,14 +169,16 @@ const Home = () => {
           ].map((item, index) => (
             <div
               key={index}
-              className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg"
+              className="flex items-center space-x-3 md:space-x-4 p-3 md:p-4 bg-gray-50 rounded-lg"
             >
-              <div className="w-8 h-8 text-primary-600">
+              <div className="w-8 h-8 md:w-10 md:h-10 text-primary-600 flex-shrink-0">
                 <item.icon className="w-full h-full" />
               </div>
-              <div>
-                <h4 className="font-semibold text-gray-900">{item.name}</h4>
-                <p className="text-sm text-gray-600">{item.desc}</p>
+              <div className="min-w-0 flex-1">
+                <h4 className="font-semibold text-gray-900 text-sm md:text-base truncate">
+                  {item.name}
+                </h4>
+                <p className="text-xs md:text-sm text-gray-600">{item.desc}</p>
               </div>
             </div>
           ))}
@@ -184,15 +186,15 @@ const Home = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="text-center py-12">
-        <div className="bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl p-8 md:p-12 text-white">
-          <h2 className="text-3xl font-bold mb-4">Ready to Prove Yourself?</h2>
-          <p className="text-xl mb-8 opacity-90">
+      <section className="text-center py-8 md:py-12 px-4">
+        <div className="bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl p-6 md:p-12 text-white">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Ready to Prove Yourself?</h2>
+          <p className="text-lg md:text-xl mb-6 md:mb-8 opacity-90">
             28 days from now, you'll be someone who finishes what they start.
           </p>
           <Link
             to="/tracker"
-            className="inline-flex items-center px-8 py-4 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-50 transition-colors shadow-medium"
+            className="inline-flex items-center px-6 md:px-8 py-3 md:py-4 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-50 transition-colors shadow-medium text-base md:text-lg"
           >
             Begin Your Challenge
             <Star className="ml-2 w-5 h-5" />

@@ -78,34 +78,34 @@ const Progress = () => {
       </div>
 
       {/* Key Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white rounded-xl shadow-soft p-6 text-center">
-          <Calendar className="w-8 h-8 text-primary-600 mx-auto mb-2" />
-          <div className="text-3xl font-bold text-primary-600">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
+        <div className="bg-white rounded-xl shadow-soft p-4 md:p-6 text-center">
+          <Calendar className="w-6 h-6 md:w-8 md:h-8 text-primary-600 mx-auto mb-2" />
+          <div className="text-2xl md:text-3xl font-bold text-primary-600">
             {stats.completedDays}
           </div>
-          <div className="text-sm text-gray-600">Days Completed</div>
+          <div className="text-xs md:text-sm text-gray-600">Days Completed</div>
         </div>
-        <div className="bg-white rounded-xl shadow-soft p-6 text-center">
-          <Flame className="w-8 h-8 text-orange-600 mx-auto mb-2" />
-          <div className="text-3xl font-bold text-orange-600">
+        <div className="bg-white rounded-xl shadow-soft p-4 md:p-6 text-center">
+          <Flame className="w-6 h-6 md:w-8 md:h-8 text-orange-600 mx-auto mb-2" />
+          <div className="text-2xl md:text-3xl font-bold text-orange-600">
             {stats.streak}
           </div>
-          <div className="text-sm text-gray-600">Current Streak</div>
+          <div className="text-xs md:text-sm text-gray-600">Current Streak</div>
         </div>
-        <div className="bg-white rounded-xl shadow-soft p-6 text-center">
-          <Award className="w-8 h-8 text-yellow-600 mx-auto mb-2" />
-          <div className="text-3xl font-bold text-yellow-600">
+        <div className="bg-white rounded-xl shadow-soft p-4 md:p-6 text-center">
+          <Award className="w-6 h-6 md:w-8 md:h-8 text-yellow-600 mx-auto mb-2" />
+          <div className="text-2xl md:text-3xl font-bold text-yellow-600">
             {stats.bestStreak}
           </div>
-          <div className="text-sm text-gray-600">Best Streak</div>
+          <div className="text-xs md:text-sm text-gray-600">Best Streak</div>
         </div>
-        <div className="bg-white rounded-xl shadow-soft p-6 text-center">
-          <CheckCircle className="w-8 h-8 text-green-600 mx-auto mb-2" />
-          <div className="text-3xl font-bold text-green-600">
+        <div className="bg-white rounded-xl shadow-soft p-4 md:p-6 text-center">
+          <CheckCircle className="w-6 h-6 md:w-8 md:h-8 text-green-600 mx-auto mb-2" />
+          <div className="text-2xl md:text-3xl font-bold text-green-600">
             {stats.completionRate}%
           </div>
-          <div className="text-sm text-gray-600">Completion Rate</div>
+          <div className="text-xs md:text-sm text-gray-600">Completion Rate</div>
         </div>
       </div>
 
