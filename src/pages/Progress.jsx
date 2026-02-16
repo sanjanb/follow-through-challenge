@@ -237,9 +237,13 @@ const Progress = () => {
               >
                 <div className="flex items-center space-x-3">
                   <div
-                    className={`text-2xl ${achievement.unlocked ? "text-green-600" : "text-gray-400"}`}
+                    className={`w-8 h-8 ${achievement.unlocked ? "text-green-600" : "text-gray-400"}`}
                   >
-                    {achievement.unlocked ? "🏆" : "🔒"}
+                    {achievement.unlocked ? (
+                      <Trophy className="w-full h-full" />
+                    ) : (
+                      <Lock className="w-full h-full" />
+                    )}
                   </div>
                   <div className="flex-1">
                     <h3
@@ -260,7 +264,10 @@ const Progress = () => {
         ) : (
           <div className="text-center py-8">
             <Target className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-500">No achievements yet. Keep going! 🚀</p>
+            <p className="text-gray-500 flex items-center justify-center space-x-2">
+              <span>No achievements yet. Keep going!</span>
+              <Rocket className="w-5 h-5 text-primary-500" />
+            </p>
           </div>
         )}
       </div>
