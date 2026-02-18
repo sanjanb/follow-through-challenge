@@ -127,12 +127,13 @@ export const ChallengeProvider = ({ children }) => {
     // Days completed
     const completedDays = days.filter((day) => day.completed).length;
 
-    // Current streak
+    // Current streak — count backwards from the most recently completed day
     let streak = 0;
-    for (let i = 0; i < 28; i++) {
+    for (let i = 27; i >= 0; i--) {
       if (days[i].completed) {
         streak++;
-      } else {
+      } else if (streak > 0) {
+        // Stop at first gap after we've started counting
         break;
       }
     }
@@ -169,6 +170,9 @@ export const ChallengeProvider = ({ children }) => {
     );
     const completionRate = Math.round((completedItems / totalItems) * 100);
 
+    // Total individual habits completed
+    const totalHabits = completedItems;
+
     // Week completion
     const completedWeeks = Object.values(weeks).filter(
       (week) => week.completed,
@@ -182,6 +186,7 @@ export const ChallengeProvider = ({ children }) => {
       totalWins,
       avgMood,
       completionRate,
+      totalHabits,
       completedWeeks,
       totalWeeks: 4,
     };

@@ -11,7 +11,7 @@ import "./App.css";
 function App() {
   return (
     <ChallengeProvider>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
+      <div className="min-h-screen" style={{ background: "linear-gradient(135deg, #eff6ff 0%, #f5f3ff 40%, #faf5ff 70%, #f0fdf4 100%)" }}>
         <Navbar />
         <main className="max-w-6xl mx-auto px-4 py-4 md:py-8">
           <Routes>
